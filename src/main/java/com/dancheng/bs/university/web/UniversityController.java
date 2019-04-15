@@ -1,11 +1,11 @@
-package com.dancheng.bs.web;
+package com.dancheng.bs.university.web;
 
 import com.alibaba.fastjson.JSON;
 import com.dancheng.bs.common.json.JsonUtils;
 import com.dancheng.bs.common.utils.Upload;
-import com.dancheng.bs.model.UniversityFaceModel;
-import com.dancheng.bs.model.UniversityModel;
-import com.dancheng.bs.service.UniversityService;
+import com.dancheng.bs.university.model.UniversityFaceModel;
+import com.dancheng.bs.university.model.UniversityModel;
+import com.dancheng.bs.university.service.UniversityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,11 +1,9 @@
-package com.dancheng.bs.dao;
+package com.dancheng.bs.university.service;
 
-import com.dancheng.bs.model.UniversityModel;
+import com.dancheng.bs.university.model.UniversityModel;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 
-@Repository(value = "universityDao")
-public interface UniversityDao {
+public interface UniversityService {
 
     /**
      * 增加大学信息
@@ -18,14 +16,14 @@ public interface UniversityDao {
      * 按id删除大学
      * @return int
      */
-    int deleteUniversityById(Integer id);
+    int deleteUniversityById(UniversityModel universityModel);
 
     /**
      * 按id查询全部
-     * @param id
+     * @param universityModel
      * @return
      */
-    UniversityModel selectById(Integer id);
+    UniversityModel selectById(UniversityModel universityModel);
 
     /**
      * 查询全部
@@ -39,4 +37,5 @@ public interface UniversityDao {
      * @return
      */
     int updateById(UniversityModel universityModel);
+
 }

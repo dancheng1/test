@@ -1,4 +1,4 @@
-package com.dancheng.bs.model;
+package com.dancheng.bs.university.model;
 
 public class UniversityModel {
 

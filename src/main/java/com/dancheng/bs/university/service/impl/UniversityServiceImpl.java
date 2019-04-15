@@ -1,8 +1,8 @@
-package com.dancheng.bs.service.impl;
+package com.dancheng.bs.university.service.impl;
 
-import com.dancheng.bs.dao.UniversityDao;
-import com.dancheng.bs.model.UniversityModel;
-import com.dancheng.bs.service.UniversityService;
+import com.dancheng.bs.university.dao.UniversityDao;
+import com.dancheng.bs.university.model.UniversityModel;
+import com.dancheng.bs.university.service.UniversityService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

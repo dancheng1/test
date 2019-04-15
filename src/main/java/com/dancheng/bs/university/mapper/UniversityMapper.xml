@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dancheng.bs.dao.UniversityDao">
-    <resultMap id="BaseResultMap" type="com.dancheng.bs.model.UniversityModel" >
+<mapper namespace="com.dancheng.bs.university.dao.UniversityDao">
+    <resultMap id="BaseResultMap" type="com.dancheng.bs.university.model.UniversityModel" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="schoolName" jdbcType="VARCHAR" />
         <result column="picLink" property="picLink" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
         <result column="registrationConditionLink" property="registrationConditionLink" jdbcType="VARCHAR" />
     </resultMap>
 
-    <insert id="insertUniversityModel" parameterType="com.dancheng.bs.model.UniversityModel">
+    <insert id="insertUniversityModel" parameterType="com.dancheng.bs.university.model.UniversityModel">
         INSERT INTO university(NAME, picLink, picClickLink, registrationTime, registrationConditionLink) VALUES("${schoolName}", "${picLink}", "${picClickLink}", "${registrationTime}", "${registrationConditionLink}")
     </insert>
 
@@ -20,7 +20,7 @@
         DELETE FROM university WHERE id = #{id}
     </delete>
 
-    <update id="updateById" parameterType="com.dancheng.bs.model.UniversityModel">
+    <update id="updateById" parameterType="com.dancheng.bs.university.model.UniversityModel">
         UPDATE university SET name = "${schoolName}", picLink = "${picLink}", picClickLink = "${picClickLink}", registrationTime = "${registrationTime}", registrationConditionLink = "${registrationConditionLink}" WHERE id = #{id}
     </update>
 
