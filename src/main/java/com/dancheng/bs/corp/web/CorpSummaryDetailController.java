@@ -1,18 +1,21 @@
 package com.dancheng.bs.corp.web;
 
+import com.alibaba.fastjson.JSON;
+import com.dancheng.bs.common.json.JsonUtils;
 import com.dancheng.bs.corp.model.CorpSummaryDetail;
 import com.dancheng.bs.corp.service.CorpSummaryDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/17.
@@ -21,7 +24,7 @@ import java.util.Map;
 @RequestMapping(value ="corp")
 public class CorpSummaryDetailController {
 
-    @Autowired
+    @Resource(name = "corpSummaryDetailServiceImpl")
     private CorpSummaryDetailService corpSummaryDetailService;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -39,12 +42,16 @@ public class CorpSummaryDetailController {
     @RequestMapping(value = "selectByPrimaryKey" ,method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> selectByPrimaryKey (@RequestBody CorpSummaryDetail corpSummaryDetail){
-        Map<String,Object> map=new HashMap<>();
-        try{
-            map = corpSummaryDetailService.selectByPrimaryKey(corpSummaryDetail);
-
-        }catch(Exception e){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            CorpSummaryDetail corpSummaryDetailResp = corpSummaryDetailService.selectByPrimaryKey(corpSummaryDetail);
+            map.put("isSuccess", "1");  //注入结果集
+            map.put("rows", JSON.parse(JSON.toJSONString(corpSummaryDetailResp, JsonUtils.isNullFilter)));   //获取信息
+            map.put("msg", "查询成功！");    //如果上述执行成功     提示成功信息
+        }catch (Exception e){
             e.printStackTrace();
+            map.put("isSuccess", "0");
+            map.put("msg", "查询失败！");
         }
         return map;
     }
@@ -57,12 +64,17 @@ public class CorpSummaryDetailController {
     @RequestMapping(value = "findByAssType" ,method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> findByAssType (@RequestBody CorpSummaryDetail corpSummaryDetail){
-        Map<String,Object> map=new HashMap<>();
-        try{
-            map = corpSummaryDetailService.findByAssType(corpSummaryDetail);
-
-        }catch(Exception e){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            List<CorpSummaryDetail> list = corpSummaryDetailService.findByAssType(corpSummaryDetail);
+            map.put("isSuccess", "1");  //注入结果集
+            map.put("rows", JSON.parse(JSON.toJSONString(list, JsonUtils.isNullFilter)));   //以list的形式进行行显示
+            map.put("total", list.size());  //对list的数量进行汇总
+            map.put("msg", "查询成功！");    //如果上述执行成功     提示成功信息
+        } catch (Exception e) {
             e.printStackTrace();
+            map.put("isSuccess", "0");
+            map.put("msg", "查询失败！");
         }
         return map;
     }
@@ -77,9 +89,15 @@ public class CorpSummaryDetailController {
     public Map<String, Object> selectCorp(@RequestBody CorpSummaryDetail corpSummaryDetail) {
         Map<String, Object> map = new HashMap<>();
         try {
-            map = corpSummaryDetailService.selectCorp();
+            List<CorpSummaryDetail> list = corpSummaryDetailService.selectCorp();
+            map.put("isSuccess", "1");  //注入结果集
+            map.put("rows", JSON.parse(JSON.toJSONString(list, JsonUtils.isNullFilter)));   //以list的形式进行行显示
+            map.put("total", list.size());  //对list的数量进行汇总
+            map.put("msg", "查询成功！");    //如果上述执行成功     提示成功信息
         } catch (Exception e) {
             e.printStackTrace();
+            map.put("isSuccess", "0");
+            map.put("msg", "查询失败！");
         }
         return map;
     }
@@ -94,9 +112,18 @@ public class CorpSummaryDetailController {
     public Map<String, Object> insertCorp(@RequestBody CorpSummaryDetail corpSummaryDetail) {
         Map<String, Object> map = new HashMap<>();
         try {
-            map = corpSummaryDetailService.insertCorp(corpSummaryDetail);
+            int count = corpSummaryDetailService.insertCorp(corpSummaryDetail);   //定义一个count   获取将要插入的数据
+            if (count != 0) {
+                map.put("isSuccess", "1");
+                map.put("msg", "保存成功！");
+            } else {
+                map.put("isSuccess", "0");
+                map.put("msg", "保存失败！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            map.put("isSuccess", "0");
+            map.put("msg", "保存失败！");
         }
         return map;
     }
@@ -111,9 +138,18 @@ public class CorpSummaryDetailController {
     public Map<String, Object> deleteCorp(@RequestBody CorpSummaryDetail corpSummaryDetail) {
         Map<String, Object> map = new HashMap<>();
         try {
-            map = corpSummaryDetailService.deleteCorp(corpSummaryDetail);
+            int count = corpSummaryDetailService.deleteCorp(corpSummaryDetail);
+            if (count != 0) {
+                map.put("isSuccess", "1");
+                map.put("msg", "删除成功！");
+            } else {
+                map.put("isSuccess", "0");
+                map.put("msg", "删除失败！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            map.put("isSuccess", "0");
+            map.put("msg", "删除失败！");
         }
         return map;
     }
@@ -128,9 +164,14 @@ public class CorpSummaryDetailController {
     public Map<String, Object> editSys(@RequestBody CorpSummaryDetail corpSummaryDetail) {
         Map<String, Object> map = new HashMap<>();
         try {
-            map = corpSummaryDetailService.editCorp(corpSummaryDetail);
+            CorpSummaryDetail corpSummaryDetailResp = corpSummaryDetailService.editCorp(corpSummaryDetail);
+            map.put("isSuccess", "1");
+            map.put("rows", JSON.parse(JSON.toJSONString(corpSummaryDetailResp, JsonUtils.isNullFilter)));
+            map.put("msg", "查询成功！");
         } catch (Exception e) {
             e.printStackTrace();
+            map.put("isSuccess", "0");
+            map.put("msg", "查询失败！");
         }
         return map;
     }
@@ -145,9 +186,18 @@ public class CorpSummaryDetailController {
     public Map<String, Object> updateCorp(@RequestBody CorpSummaryDetail corpSummaryDetail) {
         Map<String, Object> map = new HashMap<>();
         try {
-            map = corpSummaryDetailService.updateCorp(corpSummaryDetail);
+            int count = corpSummaryDetailService.updateCorp(corpSummaryDetail);
+            if (count != 0) {
+                map.put("isSuccess", "1");
+                map.put("msg", "更新成功！");
+            } else {
+                map.put("isSuccess", "0");
+                map.put("msg", "更新失败！");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            map.put("isSuccess", "0");
+            map.put("msg", "更新失败！");
         }
         return map;
     }

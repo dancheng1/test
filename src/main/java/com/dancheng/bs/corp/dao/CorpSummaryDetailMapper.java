@@ -1,9 +1,11 @@
-package com.dancheng.bs.corp.mapper;
+package com.dancheng.bs.corp.dao;
 
 import java.util.List;
 
 import com.dancheng.bs.corp.model.CorpSummaryDetail;
+import org.springframework.stereotype.Repository;
 
+@Repository(value = "corpSummaryDetailMapper")
 public interface CorpSummaryDetailMapper {
 
     int deleteByPrimaryKey(String assetsno);

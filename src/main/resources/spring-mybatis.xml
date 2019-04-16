@@ -48,7 +48,7 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--单个mapper的映射-->
-    <!--<bean id="hotelInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+    <!--<bean id="hotelInfoDao" class="org.mybatis.spring.dao.MapperFactoryBean">-->
         <!--<property name="mapperInterface" value="com.qunar.frc.demo3.dao.HotelInfoDao"/>-->
         <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
     <!--</bean>-->

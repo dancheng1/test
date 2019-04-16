@@ -1158,7 +1158,7 @@ build time: Feb 8 17:28
             } else if (isPlainObject = S.isPlainObject(input)) {
                 destination = {};
             }
-            // Add a mapping from input (the source object)
+            // Add a mapper from input (the source object)
             // to output (the destination object) to memory.
             // 做标记
             input[CLONE_MARKER] = (stamp = S.guid());
@@ -3526,7 +3526,7 @@ KISSY.add('dom/attr', function(S, DOM, UA, undefined) {
             // http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
             attrHooks.tabIndex = attrHooks.tabindex;
             // fix ie bugs
-            // 不光是 href, src, 还有 rowspan 等非 mapping 属性，也需要用第 2 个参数来获取原始值
+            // 不光是 href, src, 还有 rowspan 等非 mapper 属性，也需要用第 2 个参数来获取原始值
             // 注意 colSpan rowSpan 已经由 propFix 转为大写
             S.each([ "href", "src", "width", "height","colSpan","rowSpan" ], function(name) {
                 attrHooks[ name ] = {

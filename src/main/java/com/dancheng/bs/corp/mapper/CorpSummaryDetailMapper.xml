@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ky.workover.corp.mapper.CorpSummaryDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.ky.workover.corp.model.CorpSummaryDetail" >
+<mapper namespace="com.dancheng.bs.corp.dao.CorpSummaryDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.dancheng.bs.corp.model.CorpSummaryDetail" >
     <id column="AssetsNo" property="assetsno" jdbcType="VARCHAR" />
     <result column="ASSETSTYPE" property="assetstype" jdbcType="VARCHAR" />
     <result column="ASSETSNAME" property="assetsname" jdbcType="VARCHAR" />
@@ -117,7 +117,7 @@
     delete from corp_summary_detail
     where AssetsNo = #{assetsno,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.ky.workover.corp.model.CorpSummaryDetail" >
+  <insert id="insert" parameterType="com.dancheng.bs.corp.model.CorpSummaryDetail" >
     insert into corp_summary_detail (AssetsNo, ASSETSTYPE, ASSETSNAME, 
       BUYPERSON, BUYPRICE, DANWEI, 
       BUYNO, USERPERSON, RECIVETIME, 
@@ -139,7 +139,7 @@
       #{note2,jdbcType=VARCHAR}, #{note3,jdbcType=VARCHAR}, #{note4,jdbcType=VARCHAR}, 
       #{note5,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ky.workover.corp.model.CorpSummaryDetail" >
+  <insert id="insertSelective" parameterType="com.dancheng.bs.corp.model.CorpSummaryDetail" >
     insert into corp_summary_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="assetsno != null" >
@@ -314,7 +314,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ky.workover.corp.model.CorpSummaryDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.dancheng.bs.corp.model.CorpSummaryDetail" >
     update corp_summary_detail
     <set >
       <if test="assetstype != null" >
@@ -401,7 +401,7 @@
     </set>
     where AssetsNo = #{assetsno,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ky.workover.corp.model.CorpSummaryDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.dancheng.bs.corp.model.CorpSummaryDetail" >
     update corp_summary_detail
     set ASSETSTYPE = #{assetstype,jdbcType=VARCHAR},
       ASSETSNAME = #{assetsname,jdbcType=VARCHAR},
