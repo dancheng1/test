@@ -8,8 +8,18 @@ import org.springframework.stereotype.Repository;
 @Repository(value = "corpSummaryDetailMapper")
 public interface CorpSummaryDetailMapper {
 
+    /**
+     * 根据主键删除元素
+     * @param assetsno
+     * @return
+     */
     int deleteByPrimaryKey(String assetsno);
 
+    /**
+     * 添加元素
+     * @param record
+     * @return
+     */
     int insert(CorpSummaryDetail record);
 
     int insertSelective(CorpSummaryDetail record);
